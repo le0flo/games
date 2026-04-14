@@ -1,6 +1,6 @@
 # Games
 
-Compose files for game servers
+Compose files for game servers.
 
 ## General
 
