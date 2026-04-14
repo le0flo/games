@@ -1,0 +1,29 @@
+services:
+  valheim:
+    container_name: "games-valheim"
+    restart: "unless-stopped"
+    build:
+      context: "../src/valheim"
+      dockerfile: "Dockerfile"
+
+    environment:
+      TZ: "Europe/Rome"
+      NAME: "${VALHEIM_SERVER_NAME}"
+      PUBLIC: "${VALHEIM_SERVER_PUBLIC}"
+      PASSWORD: "${VALHEIM_SERVER_PASSWORD}"
+      WORLD: "${VALHEIM_SERVER_WORLD}"
+      MODIFIERS: "${VALHEIM_SERVER_MODIFIERS}"
+
+    volumes:
+      - "valheim-server:/server"
+      - "valheim-data:/data"
+
+    ports:
+      - "${CLOUD_HOST:-0.0.0.0}:10002:2456/udp"
+      - "${CLOUD_HOST:-0.0.0.0}:10003:2457/udp"
+
+volumes:
+  valheim-server:
+    external: true
+  valheim-data:
+    external: true

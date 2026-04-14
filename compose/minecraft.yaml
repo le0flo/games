@@ -1,0 +1,25 @@
+services:
+  minecraft:
+    container_name: "games-minecraft"
+    restart: "unless-stopped"
+    build:
+      context: "../src/minecraft"
+      dockerfile: "Dockerfile"
+
+    environment:
+      TZ: "Europe/Rome"
+      JAR: "${MINECRAFT_SERVER_JAR}"
+
+    volumes:
+      - "minecraft-server:/server:ro"
+      - "minecraft-data:/data"
+
+    ports:
+      - "${CLOUD_HOST:-0.0.0.0}:10001:25565/tcp"
+      - "127.0.0.1:25575:25575/tcp"
+
+volumes:
+  minecraft-server:
+    external: true
+  minecraft-data:
+    external: true
