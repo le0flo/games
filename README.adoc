@@ -1,0 +1,38 @@
+= Games
+
+Compose files for game servers.
+
+== General
+
+Environment variables:
+
+* `COMPOSE_FILE`
+* `CLOUD_HOST`
+
+== Minecraft
+
+Port: `10001`
+
+Setup:
+
++ Create two volumes: `minecraft-server` and `minecraft-data`
++ Put the server `.jar` file inside of the `minecraft-server` volume
++ *(optional)* Put an `eula.txt` file inside of the `minecraft-data` folder with the content: `eula=true`
++ Set the environment variable `GAMES_MINECRAFT_SERVER_JAR` with the filename (example: `paper-1.12.8-60.jar`)
++ Execute the container using `docker compose up minecraft --build`
++ *(optional)* If you want to use the server console, set `enable_rcon=true` and a `rcon_password` in the `server.properties` file, located in the `minecraft-data` volume (only if you started the server at least once), then use an rcon client (exampe: [rrcon](https://codeberg.org/bestemmie/rcon-client) :D) and connect to localhost with port `25575`
+
+== Valheim
+
+Ports: `10002`,`10003`
+
+Setup:
+
++ Create two volumes: `valheim-server` and `valheim-data`
++ *(optional)* Set these environment variables to personalize the server configuration:
+  * `VALHEIM_SERVER_NAME` The name of the valheim server
+  * `VALHEIM_SERVER_PUBLIC` By default is set to 1, it symbols wheter the server appears on the servers list or not
+  * `VALHEIM_SERVER_PASSWORD` The password used to access the server
+  * `VALHEIM_SERVER_WORLD` The world name
+  * `VALHEIM_SERVER_MODIFIERS` A list of modifiers separated by spaces in the following form: `key=value`
++ Execute the container using `docker compose up valheim --build`
