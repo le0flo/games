@@ -20,7 +20,7 @@ Setup:
 . *(optional)* Put an `eula.txt` file inside of the `minecraft-data` folder with the content: `eula=true`
 . Set the environment variable `GAMES_MINECRAFT_SERVER_JAR` with the filename (example: `paper-1.12.8-60.jar`)
 . Execute the container using `docker compose up minecraft --build`
-. *(optional)* If you want to use the server console, set `enable_rcon=true` and a `rcon_password` in the `server.properties` file, located in the `minecraft-data` volume (only if you started the server at least once), then use an rcon client (exampe: https://codeberg.org/bestemmie/rcon-client[rrcon] :D) and connect to localhost with port `25575`
+. *(optional)* If you want to use the server console, set `enable_rcon=true` and a `rcon_password` in the `server.properties` file, located in the `minecraft-data` volume (only if you started the server at least once), then use an rcon client (exampe: https://codeberg.org/leoflo/rcon-client[rrcon] :D) and connect to localhost with port `25575`
 
 == Valheim
 
